@@ -1,0 +1,600 @@
+/* ------------------- GENERAL SETTINGS -------------------- */
+html, body {
+	font-family: Verdana, Geneva, sans-serif;
+    height: 100%;
+    margin: 0;
+    overflow: hidden;
+    padding: 0;
+    color:#333;
+}
+
+
+
+#appLayout {
+	height:100%;
+	padding:0;
+	margin:0;
+}
+
+#center_panel, #top_panel {
+	border: none;
+	margin:0;
+	padding:0;
+	width:100%;
+}
+.claro .dijitDialogUnderlay { background:#fff; }
+
+
+.link {
+	text-decoration: underline;
+	cursor: pointer;
+	display: inline;
+}
+
+.plusIcon, .plusBlockIcon {
+	background-image: url(images/plus.gif);
+	background-repeat: no-repeat;
+	background-position: center center;
+	width: 18px;
+	height: 18px;
+}
+
+.SimpleList {line-height:2em;}
+
+.dijitDialog .dijitDialogCloseIcon {display: inline-block;}
+
+ #loader {
+    background: #fff;
+    height: 100%;
+    left: 0;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    top: 0;
+    vertical-align: middle;
+    width: 100%;
+    z-index: 999;
+    text-align: center;
+    vertical-align: center;
+    padding-top: 100px;
+  }
+
+ #loading {font-weight:bold;}
+
+/* ------------------------------ Profile ----------------------------------*/
+.firstLabel {
+	display: inline-block;
+	width: 11em;
+	min-width: 11em;
+	margin: 5px;
+	text-align:right;
+	font-weight: bold;
+}
+
+
+/* -------------------------------- TOP BAR ------------------------------- */
+
+#header_container {
+	width:100%;
+	background-color: #333333;
+	color:#fff;
+	height:35px;
+	line-height:35px;
+	/*font-weight:bold;*/
+}
+
+#header_container #welcome {
+	float: left;
+	margin-left:10px;
+}
+
+#header_container #welcome #profile {
+	color:#00FFFF;
+	display: inline;
+	text-decoration: underline;
+	cursor: pointer;
+}
+
+#header_container a {
+	display: inline-block;
+	color:#FFFFFF;
+	height: inherit;
+}
+
+#header_container a:hover {
+	text-shadow: 0px 0px 10px #FFFFFF;
+} 
+
+#header_container .topBarLink, .notify_circle {
+	float: right;
+	margin-left: 20px;
+	display: inline;
+	text-decoration: underline;
+	cursor: pointer;
+}
+
+#header_container .notify_circle { text-decoration: none; }
+
+
+#header_container .__exit__ {
+	margin-left: 3px;
+	margin-right: 10px;
+}
+
+#header_container .notify_circle {
+	margin-left:5px;
+	display: inline-block;
+	background-repeat:no-repeat;
+	/*background-attachment:fixed; FOR OPERA!!*/
+	background-position:center; 
+	width:25px;
+	height:inherit;
+	text-align: center;
+	font-weight: bold;
+}
+
+#header_container #pending_tasks {
+	background-image: url('images/blue_notify.png');
+}
+
+#header_container #notifications {
+	background-image: url('images/green_notify.png');
+}
+
+#header_container #new_mail {
+	background-image: url('images/red_notify.png');
+}
+
+#header_container #exit_img {
+	background-image: url('images/exit.png');
+	margin-left: 30px;
+}
+
+
+/* -------------- END TOP BAR  --------------------- */
+
+
+/* -------------- NAVIGATION BAR ------------------- */
+nav {
+	background: #c4b52d; /* Old browsers */
+	background: -moz-linear-gradient(top, #c4b52d 0%, #908820 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#c4b52d), color-stop(100%,#908820)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top, #c4b52d 0%,#908820 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top, #c4b52d 0%,#908820 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top, #c4b52d 0%,#908820 100%); /* IE10+ */
+	background: linear-gradient(top, #c4b52d 0%,#908820 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#c4b52d', endColorstr='#908820',GradientType=0 ); /* IE6-9 */
+	height: 110px;
+	border-bottom: 2px solid #000;
+}
+
+nav ul {
+	text-align: center;
+	margin: 0;
+	padding: 0;
+}
+
+nav ul li { 
+	padding-top: 10px;
+	display: inline-block; 
+	line-height: 18px;
+	cursor: pointer;
+}
+
+nav ul li .nav_text {
+	padding: 0 20px;
+	color: #FFFFFF;
+	text-shadow: 0px 1.5px #000000;
+	font-size: 1.1em;
+	width:90px;
+}
+
+nav ul li:hover .nav_text {
+	text-shadow: 0px 0px 10px #FFFFFF;
+} 
+
+/* ---- two indicators trick to simulate arrow with border ------ */
+nav #current_indicatorb {
+	position: absolute;
+	width: 0;
+	height: 0;
+	border-left: 15px solid transparent;
+	border-right: 15px solid transparent;
+	border-bottom: 15px solid black;
+	z-index:98;
+	top:132px;
+}
+nav #current_indicator {
+	position: absolute;
+	width: 0;
+	height: 0;
+	border-left: 13px solid transparent;
+	border-right: 13px solid transparent;
+	border-bottom: 13px solid white;
+	z-index:99;
+	top:2px;
+	left:-13px;
+}
+
+#logo {
+	display: inline;
+	float: left;
+	margin: 10px;
+}
+
+/* ------------ END NAVIGATION BAR ------------------- */
+
+/* ------------- PANELS ------------------------------*/
+
+.headerSection {
+	margin-bottom:20px;
+	margin-top: 20px;
+	/*padding: 0 20px 0 20px;*/
+}
+
+.headerSection .__notifications__, .__pendingTasks__{ 
+	background-color: #339900;
+	color: #fff;
+	padding: 5px;
+	border-radius:5px;
+}
+
+.headerSection .__pendingTasks__{ 
+	background-color: #0197FD;
+}
+
+.headerSection .normalHeader {
+	padding: 5px;
+}
+
+.headerSection .dijitButton {
+	font-size: 0.8em;
+	height: 29px;
+	float:right;
+}
+
+.headerSection #vacation_check {
+	float: right;
+	display: inline;
+	margin-right: 20px;
+}
+
+.headerSection .dijitDropDownButton{
+	margin: 0;
+}
+
+.header_underline {
+	height: 1px;
+	background-color: #000000;
+	display: block;
+	margin-top: 4px;
+}
+
+article {padding: 200;}
+
+article h2 {
+	margin: 0 0 0 20px;
+	padding: 0;
+	font-size: 1.2em;
+	display: inline-block;
+}
+
+.dijitButton { margin: 0;}
+
+.noItems {	
+	text-align: left; 
+	margin-left: 60px;
+}
+
+.items_list{
+	padding-left: 20px;
+}
+
+section {
+	width: 100%; 
+	margin: 0px auto;
+	/*margin-bottom:40px;*/
+	margin-top:20px;
+}
+
+section .sectionWrapper {
+	margin-left: 20px;
+	margin-right: 20px;
+	margin-bottom: 20px;
+}
+
+.infoIcon {
+	background-image: url('images/info.png');	
+	height:24px;
+	width:24px;
+	display: inline-block;
+	vertical-align: middle;
+	margin-left: 5px;
+}
+
+
+/* --------------------------------- Home ---------------------------------- */
+
+/*.StatsWrapper {
+	width:90%;
+}
+*/
+.Chart {
+	margin: 0 auto;
+}
+
+ #web_statistics { 
+	width:800px; 
+	float: left;
+	height:400px;
+}
+ #mail_statistics, #web_space_statistics { 
+	min-width:400px;
+	max-width:600px;
+	float: left;
+	height:300px;
+}
+#domains { 
+	min-width:300px;
+	max-width:800px;
+	float: left;
+	height:400px;
+}
+.Stats {
+	
+	/*height:100px;*/
+	padding: 0;
+	margin:0;
+	margin-right: 30px;
+	
+}
+
+.twoColumnWrapper {
+	/*width:50%;*/
+	min-width:500px;
+	max-width:600px;
+	float:left;
+	height:200px;
+	overflow: auto;
+	margin-right: 30px;
+	/*margin-left: 30px;*/
+}
+
+.dijitTabContainer { height:100%;}
+
+.__view_all__ {
+	display: inline-table;
+	font-size 0.9em;
+	margin-left: 20px;
+}
+/* ------------------------------ Mail ----------------------------------------*/
+
+.mail_container {
+	min-width:600px;
+	max-width:700px;
+	margin-right: 30px;
+	margin-bottom: 20px;
+	min-height:200px;
+}
+
+.vacation_container{
+	width:800px;
+	height:550px;
+	margin-right: 30px;
+	margin-bottom: 20px;
+}
+
+.settings_container {
+	min-width:600px;
+	max-width:700px;	
+	height: 200px;
+}
+
+.mail_container, .vacation_container, .settings_container {
+	margin-right: 30px;
+	float:left;
+}
+
+
+.fieldLabel {
+	display: inline-block;
+	width: 8em;
+	min-width: 8em;
+	margin: 5px;
+	text-align:right;
+	/*font-weight: bold;*/
+}
+
+
+
+ /* ----------------------------- Web ------------------------------------------*/
+
+#VirtualHostContainer{ margin: 0 auto; }
+
+.virtualHost {
+ 	display: inline-block;
+ 	padding: 10px;
+	background-color: #F7F7F7;
+	margin: 10px;
+	border-radius: 10px;
+	border: 1px solid #D6D6D6;
+	width:500px;
+	vertical-align: top;
+ }
+
+.uploadIcon {
+	background-image: url('images/upload.png');	
+	height:24px;
+	width:24px;
+	display: inline-block;
+	vertical-align: bottom;
+	margin-left: 5px;
+}
+
+.virtualHost .label {
+	/*display: inline-block;*/
+	width: 8em;
+	padding-right: 5px;
+	font-weight: bold;
+	text-align:right;	
+	vertical-align:top
+}
+
+.virtualHost .dijitTextBox {width:100%;}
+
+.virtualHost .dojoxListInput {
+	width:100%;
+	min-height:100px;
+	max-height:100px;
+	/*padding: 3px;*/
+	overflow-x:hidden;
+	overflow-y:auto;
+	border-color: #B5BCC7;
+}
+
+.virtualHost #vhost_table {
+	width:100%;
+	table-layout:fixed;
+}
+
+.virtualHost .saveDiv {
+	float:right;
+	margin-top: 20px;
+}
+
+
+/* Databases */
+
+.dbsettings_container {
+	min-width:400px;
+	max-width:500px;
+	float:left;
+	/*margin-left: 30px;*/
+	margin-right: 30px;
+	height: 100px;
+}
+
+.database_container {
+	min-width:500px;
+	max-width:600px;
+	float:left;
+	/*margin-left: 30px;*/
+	margin-right: 30px;
+	min-height: 200px;
+	overflow :auto;
+}
+
+/*.database_container table {
+	width:100%;
+}*/
+.database_container table th {
+	min-width:10em;
+	text-align:left;
+}
+.database_container table td {
+	padding: 5px;
+	padding-right: 10px;
+	padding-left: 0;
+}
+.dbConnectionLabel {
+	display: inline-block;
+	width: 5em;
+	min-width: 5em;
+	margin: 5px;
+	text-align:right;
+	font-weight: bold;
+}
+
+
+
+/* *********************** Billing *********************************** */
+
+#services_grid, #bills_grid { margin-left: 20px; }
+
+.downloadLink {text-align:center;}
+
+#services_container, #bills_container, #bill_data_container {
+	float: left;
+	margin-bottom: 40px;
+}
+
+
+#services_container { 
+	width: 850px;
+}
+
+#bills_container { 
+	width: 810px;
+
+}
+#bill_data_container { 
+	width: 550px;
+}
+
+/* ************************ Misc ***************************************/
+
+.closeIcon {
+	background-image: url(images/close.png);
+	background-repeat: no-repeat;
+	background-position: center center;
+	width: 24px;
+	height: 24px;
+	display: inline-block;
+	vertical-align: middle;
+}
+
+.webTabIcon {
+	background-image: url(images/webTab.png);
+	background-repeat: no-repeat;
+	background-position: center center;
+	width: 16px;
+	height: 16px;
+	display: inline-block;
+	vertical-align: middle;
+}
+
+.dbTabIcon {
+	background-image: url(images/dbTab.png);
+	background-repeat: no-repeat;
+	background-position: center center;
+	width: 16px;
+	height: 16px;
+	display: inline-block;
+	vertical-align: middle;
+}
+
+.mailTabIcon {
+	background-image: url(images/mailTab.png);
+	background-repeat: no-repeat;
+	background-position: center center;
+	width: 16px;
+	height: 16px;
+	display: inline-block;
+	vertical-align: middle;
+}
+
+.listTabIcon {
+	background-image: url(images/listTab.png);
+	background-repeat: no-repeat;
+	background-position: center center;
+	width: 16px;
+	height: 16px;
+	display: inline-block;
+	vertical-align: middle;
+}
+
+.limitIcon {
+	background-image: url(images/limit.png);
+	background-repeat: no-repeat;
+	background-position: center center;
+	width: 16px;
+	height: 16px;
+	display: inline-block;
+	vertical-align: middle;
+	margin-right: 5px;
+}
+
+#mail_accounts_limit, #databases_limit {
+	line-height: 16px;
+	vertical-align: bottom;
+}

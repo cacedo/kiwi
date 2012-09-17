@@ -1,0 +1,73 @@
+<div>
+    <div class="closeIcon link" style="float:right" id="rm_vh_${id}"></div>
+    <table id="vhost_table">
+        <tr>
+            <td width="125" style="vertical-align:top;" class="label">
+                <label class="__address__ ">Address:</label>
+            </td>
+            <td style="word-wrap: break-word">
+                <a href=""><span data-dojo-attach-point="addressNode"></span></a></div>
+            </td>
+        </tr>
+        <tr>
+            <td class="label">
+                <label class="__description__" for="description">Description:</label>
+            </td>
+            <td>
+                <input type="text" name="descriptionNode" data-dojo-type="dijit.form.TextBox" data-dojo-attach-point="descriptionNode" value="${description}">
+            </td>
+        </tr>
+        <tr>
+            <td  class="label">
+                <label class="__path__" for="path">Directory:</label>
+            </td>
+            <td>
+                <input type="text" name="directory" data-dojo-type="dijit.form.ValidationTextBox" required="true" value="${directory}">
+            </td>
+        </tr>
+        <tr>
+            <td class="label">
+                <label class="__domains__ label">Main domain:</label>  
+            </td>
+            <td>
+                <div name="domain" data-dojo-type="dijit.form.ValidationTextBox" required="true" value="${domain}"></div>
+            </td>
+        </tr>
+        <tr>
+            <td class="label">
+                <label class="__domains__ label">Domains:</label>  
+            </td>
+            <td>
+                <div  data-dojo-type="dojox.form.ListInput" data-dojo-props="name:'aliases', value:${aliases}"></div>
+            </td>
+        </tr>
+        <tr>
+            <td class="label">
+               <label class="__database__" for="database">Database:</label>
+            </td>
+            <td>
+<!--                 <select name="databases"  data-dojo-type="dijit.form.Select" data-dojo-attach-point='dboptions' style="width: 328px;margin:0" value="${database}">
+                </select>  -->   
+                <input type="text" data-dojo-type="dijit.form.TextBox" value="${database}">
+            </td>
+        </tr>
+        <tr> 
+            <td class="label">
+                <label></label>        
+            </td>
+            <td>
+                <input type="file" multiple="false" dojoType="dojox.form.Uploader" 
+                data-dojo-props="iconClass:'uploadIcon'" 
+                label="Upload web in a zip file" 
+                url="/tests/UploadFile.php"    
+                uploadOnSelect="true">            
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>
+                <div class="saveDiv"><button data-dojo-type="dijit.form.Button" data-dojo-props="iconClass:'dijitEditorIcon dijitEditorIconSave'" type="button" class="saveButton">Save</button></div>
+            </td>
+        </tr>
+    </table>      
+ </div>

@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Pangea Control Panel</title>
+    <!-- load Dojo -->
+    <link rel="stylesheet" href="js/dojo/dijit/themes/claro/claro.css" media="screen">    
+    <style type="text/css">@import "js/dojo/dojox/form/resources/ListInput.css";</style> 
+    <style type="text/css">@import "js/dojo/dojox/grid/resources/claroGrid.css";</style>
+
+    <script src="js/dojo/dojo/dojo.js" data-dojo-config="async: true, parseOnLoad:true, isDebug: true, locale:'en'"> </script>
+
+
+    <script>
+        require([ "dijit/Dialog", "dijit/layout/BorderContainer", "dijit/layout/StackContainer", "dijit/layout/TabContainer",
+                "dijit/layout/ContentPane", "dijit/form/Button", "dijit/form/TextBox", "dijit/form/NumberTextBox",
+                "dijit/form/DateTextBox", "dijit/Editor", "dijit/form/Select", "dijit/form/ValidationTextBox",
+                "dijit/form/TimeTextBox", "dojox/validate/regexp", "dojox/form/PasswordValidator",
+                "dojox/form/Uploader", "dojox/form/ListInput", "dijit/TitlePane", "dojo/domReady!" ]);
+    </script>
+
+ 
+
+    <script type="text/javascript" src="js/functions.js"></script>
+    <script type="text/javascript" src="js/home.js"></script>
+    <script type="text/javascript" src="js/mail.js"></script>
+    <script type="text/javascript" src="js/web.js"></script>
+    <script type="text/javascript" src="js/billing.js"></script>
+
+
+    <link rel="stylesheet" type="text/css" href="style.css" />
+
+
+        
+
+</head>
+<body class="claro">	
+
+    <div id="loader"><span id="loading">Loading...</span></div>
+
+    <div id="appLayout" data-dojo-type="dijit.layout.BorderContainer" data-dojo-props="design: 'headline'">
+
+        <div id="top_panel" data-dojo-type="dijit.layout.ContentPane" data-dojo-props="region: 'top'">
+        	<!-- ################################ Top bar ################################### -->
+   
+
+        	<header>
+        		<div id="header_container">
+        			<div id="welcome">Welcome <div id="profile">Joe</div>, your last access was on 
+                    <span id="last_access"></span>
+                    </div>
+                    <div class="__exit__ topBarLink dijitInline"> Exit</div><div id="exit_img" class="notify_circle"></div>
+                    <div id="new_mail" class="notify_circle">1</div><div class="__mail__ topBarLink dijitInline">Mail</div>
+<!--                <div id="pending_tasks" class="notify_circle">1</div><div class="__pending_tasks__ topBarLink dijitInline">Tasks</div>
+                    <div id="notifications" class="notify_circle">1</div><div class="__notifications__ topBarLink dijitInline">Notifications</div> -->
+        		</div>
+        	</header>
+
+
+
+            <!-- #################################  Profile dialog ############################# -->
+            <div class="dijitHidden">
+                <div data-dojo-type="dijit.Dialog"  data-dojo-props="title:'Edit profile'" id="profile_dialog">
+                    <label class="firstLabel" for="first_name">Name</label>
+                    <input type="text" name="first_name" data-dojo-type="dijit.form.TextBox" id="firstName">
+                    <br>
+                    <label class="firstLabel" for="sure_name">Surename</label>
+                    <input type="text" name="sure_name" data-dojo-type="dijit.form.TextBox" id="surename"> 
+                    <br>
+                    <label class="firstLabel" for="mail">Mail address</label>
+                    <input type="text" name="mail_address" data-dojo-type="dijit.form.ValidationTextBox" id="altMail" 
+                    regExpGen="dojox.validate.regexp.emailAddress" trim="true" lowercase="true" invalidMessage="Invalid Email Address."> 
+                    <br>
+                    <label class="firstLabel" for="cif_nif">CIF/NIF</label>
+                    <input type="text" name="cif_nif" data-dojo-type="dijit.form.TextBox" id="cif"> 
+                    <br>
+                    <label class="firstLabel" for="Country">Country</label>
+                    <input id="country">                    
+                    <br>
+                    <label class="firstLabel" for="Province">Province</label>
+                    <input type="text" name="province" data-dojo-type="dijit.form.TextBox" id="province"> 
+                    <br>
+                    <label class="firstLabel" for="town">Town</label>
+                    <input type="text" name="town" data-dojo-type="dijit.form.TextBox" id="town"> 
+                    <br>
+                    <label class="firstLabel" for="postal_code">Postal Code</label>
+                    <input type="text" name="postal_code" data-dojo-type="dijit.form.NumberTextBox" id="postalCode"> 
+                    <br>
+                    <label class="firstLabel" for="address">Address</label>
+                    <input type="text" name="address" data-dojo-type="dijit.form.TextBox" id="address"> 
+                    <br>
+                    <label class="firstLabel" for="telephone">Telephone</label>
+                    <input type="text" name="telephone" data-dojo-type="dijit.form.NumberTextBox" constraints="{pattern:'#'}" id="telephone"> 
+                    <br>
+                    <label class="firstLabel" for="alt_telephone">Alternative telephone</label>
+                    <input type="text" name="alt_telephone" data-dojo-type="dijit.form.NumberTextBox" constraints="{pattern:'#'}" id="telephone2"> 
+                    <br>
+                    <br>
+                    <label class="firstLabel" for="language">Application language</label>
+                    <select name="language" data-dojo-type="dijit.form.Select" id="language">
+                        <option value="english" selected="selected">English</option>
+                        <option value="catalan">Catalan</option>
+                        <option value="spanish">Spanish</option>
+                    </select>
+                    <br>
+                    <br>
+                    <label class="firstLabel" ></label>
+                    <button data-dojo-type="dijit.form.Button" id="change_pass_btn">Change password
+                        <script type="dojo/method" data-dojo-event="onClick" data-dojo-args="evt">
+                            dijit.byId("change_password").show();  
+                        </script>
+                    </button>
+                    <br>
+                    <br>                    
+                    <div class="dijitDialogPaneActionBar">
+                        <button dojoType="dijit.form.Button" type="submit" id="ok">Save</button>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="dijitHidden">
+                <div data-dojo-type="dijit.Dialog"  data-dojo-props="title:'Change password'" id="change_password">
+                    <div data-dojo-type="dojox.form.PasswordValidator" name="password">
+                        <script type="dojo/method" data-dojo-event="pwCheck" data-dojo-args="password">
+                            /* NOTE: DO NOT EVER EVER EVER DO THIS - ONLY AN EXAMPLE */
+                            return password == "password"
+                        </script>
+                        <label class="firstLabel" for="old">Old Password</label> 
+                        <input type="password" pwType="old" id="old">
+                        <br>
+                        <label class="firstLabel" for="new">Password</label>
+                        <input type="password" pwType="new" id="new">
+                        <br>
+                        <label class="firstLabel" for="verify">Password again</label>
+                        <input type="password" pwType="verify" id="verify"><br>
+                    </div>
+                    <div class="dijitDialogPaneActionBar">
+                        <button dojoType="dijit.form.Button" type="submit" id="change_pass_save">Change</button>
+                    </div>
+                </div>
+            </div>
+
+        	
+        	<!-- ############### Navigation bar ################# -->
+            <nav>
+                <!-- <img id="logo" src="images/logo.png"> -->
+                <div id="current_indicatorb"><div id="current_indicator"></div></div>
+            	<ul id="nav_list">
+        	    	<li id="nav_home" class="nav_item"><img src="images/home.png"><div class="nav_text">Home</div></li>
+        	    	<li id="nav_mail" class="nav_item"><img src="images/mail.png"><div class="nav_text">Mail</div></li>
+        	    	<li id="nav_web" class="nav_item"><img src="images/web.png"><div class="nav_text">Web</div></li>
+        	    	<li id="nav_billing" class="nav_item"><img src="images/billing.png"><div class="nav_text">Billing</div></li>
+            	</ul>
+            </nav>
+        </div> <!-- top container -->
+
+
+        <div id="center_panel" data-dojo-type="dijit.layout.StackContainer" data-dojo-props="region: 'center'">
+
+            <!-- ################################################ Home article ########################################## -->
+            <article id="home" class="slide"
+                    data-dojo-type="dijit.layout.ContentPane"
+                    data-dojo-props="title: 'Home'">
+
+                <div class="twoColumnWrapper">                    
+                    <div class="headerSection">
+                        <h2> <div class="__notifications__">Notifications</div> </h2>
+                        <div class="header_underline"></div>
+                    </div>
+                    <div id="notification_items" class="items_list">
+                    </div>
+                </div>
+
+                <div class="twoColumnWrapper">
+                    <div class="headerSection">
+                        <h2><div class="__pendingTasks__"> Pending tasks </div></h2>
+                        <div class="header_underline"></div>
+                    </div>
+                    <div id="task_items" class="items_list">
+                    </div>                
+                </div>
+
+                
+                <div id="domains" class="Stats">
+                        <div class="StatsWrapper">
+                            <div class="headerSection">
+                                <h2><div class="normalHeader"> Domains </div></h2>
+                                <div class="header_underline"></div>
+                            </div> 
+                            <div id="domain_items" class="items_list">
+                            </div>    
+                        </div>
+                    </div>
+
+                    <div id="mail_statistics" class="Stats">
+                        <div class="StatsWrapper">
+                            <div class="headerSection">
+                                <h2> <div class="normalHeader">Mail space <div></h2>
+                                <div class="header_underline"></div>
+                            </div>                           
+                            <div id="mail_chart" class="Chart"></div>
+                        </div>
+                    </div>
+
+                    <div id="web_space_statistics" class="Stats">
+                        <div class="StatsWrapper">
+                            <div class="headerSection">
+                                <h2> <div class="normalHeader">Web space <div></h2>
+                                <div class="header_underline"></div>
+                            </div>                           
+                            <div id="web_space_chart" class="Chart"></div>
+                        </div>
+                    </div>
+
+                    <div id="web_statistics" class="Stats">
+                               <div class="StatsWrapper">
+                                    <div class="headerSection">
+                                        <h2> <div class="normalHeader">Web bandwidth usage</div> </h2>
+                                        <div class="header_underline"></div>
+                                    </div>
+                                    <div id="web_chart" class="Chart"></div>
+                                    <div id="web_legend"></div>
+                           </div>
+                    </div>
+
+
+            </article>
+    	
+    	   <!-- ############################################### Mail article ##################################################### -->
+            <article id="mail" class="slide"
+                 data-dojo-type="dijit.layout.ContentPane"
+                 data-dojo-props="title: 'Mail'">
+                 <div style="width:100%;height:100%">
+
+                <div data-dojo-type="dijit.layout.TabContainer" doLayout="true" style="height=100%">
+
+                    <!-- My Account -->
+                    <div data-dojo-type="dijit.layout.ContentPane"  data-dojo-props='title:"Mail Account Settings",
+                        iconClass:"mailTabIcon"' selected="true">
+                        
+                        <!-- Vacation -->
+                        <div class="vacation_container">
+                            <div class="headerSection">
+                                <h2><div class="normalHeader"> Vacation message</div></h2><div id="info_vacation" class="infoIcon"></div>                              
+                                <button data-dojo-type="dijit.form.Button" data-dojo-props="iconClass:'dijitEditorIcon  dijitEditorIconSave'"
+                                 type="button" id="save_vacation_btn" onClick="saveVacation()">Save message</button>
+                                <div id="vacation_check"><input id="vacation_status"> <label for="vacation_status">Active</label></div>
+                                <div class="header_underline"></div>
+                            </div> 
+                            <section id="vacation_container" data-dojo-type="dijit.layout.StackContainer" doLayout="false">
+                                <div id="vacation_disabled" class="noItems" 
+                                    data-dojo-type="dijit.layout.ContentPane">
+                                        Vacation message is <div style="font-weight:bold;display:inline">not</div> active
+                                </div>
+                                <div id="vacation_enabled" data-dojo-type="dijit.layout.ContentPane" class="sectionWrapper">
+                                    <label for="vac_from_address">Mail from:</label>
+                                    <select data-dojo-type="dijit.form.Select" id="vac_from_address">
+                                    </select><br>
+                                    <label for="vac_fom_date">I'll be on vacation from:</label>
+                                    <input id="vac_from_date" type="text" name="fromDate" data-dojo-type="dijit.form.DateTextBox" 
+                                        required="true" onChange="dijit.byId('vac_to_date').constraints.min = arguments[0];">
+                                    <label for="vac_to_date">To:</label>
+                                    <input id="vac_to_date" type="text" name="toDate" data-dojo-type="dijit.form.DateTextBox" required="true"
+                                        onChange="dijit.byId('vac_from_date').constraints.max = arguments[0];">
+                                    <label for="vac_message" style="display:block;">Message:</label>
+                                    <div data-dojo-type="dijit.Editor" id="vac_message">
+                                        <p>This is the initial content.</p>
+                                    </div>               
+                                </div><!-- /contentPane -->       
+                            </section>                      
+                        </div>
+                        
+                            
+                        <!-- ### Forwards ### -->
+                        <div class="mail_container">
+                            <div class="headerSection">
+                                <h2><div class="normalHeader"> Forwards </div></h2><div id="info_forward" class="infoIcon"></div>
+                                <div id="new_forward_drop"></div>
+                                <div class="header_underline"></div>
+                            </div> 
+                            <section>
+                                <div class="sectionWrapper">
+                                    <ul id="forward_list">
+                                    </ul>
+                                </div>
+                            </section>
+                        </div>
+
+                        <!-- ### Aliases ### -->
+                        <div class="mail_container">
+                            <div class="headerSection">
+                                <h2> <div class="normalHeader">Aliases</div></h2><div id="info_alias" class="infoIcon"></div>
+                                <div id="new_alias_drop"></div>
+                                <div class="header_underline"></div>
+                            </div>
+                            <section>
+                                <div class="sectionWrapper">
+                                    <ul id="alias_list">
+                                    </ul>
+                                </div>     
+                            </section>
+                        </div>
+                        <!-- ###  External settings ###   -->
+                        <div class="settings_container">
+                            <section>
+                                <div class="headerSection">
+                                    <h2><div class="normalHeader"> External access settings </div></h2> <div id="info_access" class="infoIcon"></div>
+                                    <div class="header_underline"></div>
+                                </div>             
+                                <div class="sectionWrapper">
+                                    <div id="conection_data" data-dojo-type="dijit.TitlePane" data-dojo-props="title:'Show connection settings',open:false">                            
+                                        <div class="__name__ firstLabel"> Name: </div> pangea <br>
+                                        <div class="__mail_address__ firstLabel"> e-mail address: </div> admin@pangea.org <br>
+                                        <div class="__incoming_server__ firstLabel" > Incoming server: </div> mail.pangea.org <br>
+                                        <div class="__outgoing_server__ firstLabel"> Outgoing server: </div> smtp.pangea.org <br>
+                                        <div class="__authentication__ firstLabel"> Authentication: </div> 
+                                        <div class="__yes__ dijitInline">Yes</div>
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
+                </div>
+
+                    <!-- #########   Other Accounts Tab  #######   -->
+                    <div data-dojo-type="dijit.layout.ContentPane"  data-dojo-props='title:"Other Accounts",
+                        iconClass:"listTabIcon"'>
+                        <div class="mail_container">
+                            <section>                        
+                                <div class="headerSection">
+                                    <h2><div class="normalHeader"> Other accounts from Pangea </div></h2>
+                                    <div id="new_mail_drop"></div>
+                                    <div class="header_underline"></div>
+                                </div>  
+                                <div class="sectionWrapper">
+                                    <ul id="other_accounts_list">
+                                    </ul>
+                                    <span id="mail_accounts_limit"></span>
+                                </div>
+                            </section>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            </article>
+
+    	
+    	   <!-- ##################################################  Web article  ############################################## -->
+            <article id="web" class="slide"
+                data-dojo-type="dijit.layout.ContentPane"
+                data-dojo-props="title: 'Web'">
+                
+                <div data-dojo-type="dijit.layout.TabContainer" doLayout="true" style="height=100%">
+
+                    <!-- My Websites -->
+                    <div data-dojo-type="dijit.layout.ContentPane" data-dojo-props='title:"Websites",
+                        iconClass:"webTabIcon"' selected="true" id="web_content_pane">
+
+                        <section>                        
+                            <div class="headerSection">
+                                <h2> <div class="normalHeader">Websites</div> </h2>                                
+                                <div id="new_website_btn"></div>
+                                    <!-- <button data-dojo-type="dijit.form.Button"  data-dojo-props="iconClass:'plusIcon'"   -->
+                                     <!-- type="button" id="add_site_button" onClick="addNewSite()">Add website</button>                                 -->
+                                <div class="header_underline"></div>
+                            </div>  
+                            <div class="sectionWrapper">
+                                <div id="VirtualHostContainer"></div>                           
+                            </div>
+                        </section>
+
+                    </div>
+
+                    <!-- Databases -->
+                    <div data-dojo-type="dijit.layout.ContentPane"  data-dojo-props='title:"Databases",
+                        iconClass:"dbTabIcon"'>                
+                        <div class="database_container">
+                            <section>
+                                <div class="headerSection">
+                                    <h2> <div class="normalHeader">Databases </div></h2>
+                                    <div id="new_database_btn"></div>                                
+                                    <div class="header_underline"></div>
+                                </div> 
+                                <div class="sectionWrapper">
+                                    <table id="database_table">
+                                        <tr>
+                                            <th>Name</th><th colspan="2">User</th>
+                                        </tr>
+                                    </table>
+                                    <br>
+                                    <span id="databases_limit"></span>
+                                </div>
+                            </section>
+                        </div>
+                        <div class="dbsettings_container">
+                            <div class="headerSection">
+                                <h2> <div class="normalHeader">Connection settings </div></h2>
+                                <div class="header_underline"></div>
+                            </div>
+                            <div class="sectionWrapper">                                
+                                <div class="dbConnectionLabel"> Type: </div> MySQL <br>
+                                <div class="dbConnectionLabel"> Host: </div> mysql.pangea.lan <br>
+                            </div>
+                             
+                        </div>
+                    </div>
+                </div>
+            </article>
+        
+            <!-- ################################################## Billing article ############################################## -->
+            <article id="billing" class="slide"
+                data-dojo-type="dijit.layout.ContentPane"
+                data-dojo-props="title: 'Billing'">
+                <div id="services_container">
+                    <div class="headerSection">
+                        <h2> <div class="normalHeader">Current Services </div></h2>  
+                        <div class="infoIcon"></div>                                               
+                        <div class="header_underline"></div>
+                    </div>
+                    <span id="services_grid"></span>
+                </div>
+                <div id="bills_container">
+                    <div class="headerSection">
+                        <h2> <div class="normalHeader">Bills </div></h2>
+                        <div class="infoIcon"></div>                                            
+                        <div class="header_underline"></div>
+                    </div>
+                    <span id="bills_grid"></span>
+                </div>
+                <div id="bill_data_container">
+                    <div class="headerSection">
+                        <h2> <div class="normalHeader">Billing data </div></h2>   
+                        <button data-dojo-type="dijit.form.Button" data-dojo-props="iconClass:'dijitEditorIcon  dijitEditorIconSave'"
+                        type="button" id="save_billing_data_btn" onClick="saveBillingData()">Save</button>                          
+                        <div class="header_underline"></div>
+                    </div>
+                    <label class="firstLabel" for="account_name">Account name</label>
+                    <input type="text" name="account_name" data-dojo-type="dijit.form.TextBox" id="account_name"> 
+                    <br>
+                    <label class="firstLabel" for="account_entity">Account number</label>
+                    <input type="text" maxlength="4" style="width: 4em;"  data-dojo-type="dijit.form.TextBox" id="account_entity"> 
+                    <input type="text" maxlength="4"  style="width: 4em;"  data-dojo-type="dijit.form.TextBox" id="account_branch"> 
+                    <input type="text" maxlength="2"style="width: 2em;"  data-dojo-type="dijit.form.TextBox" id="account_control_digit"> 
+                    <input type="text" maxlength="10" style="width: 8em;" data-dojo-type="dijit.form.TextBox" id="account_number"> 
+                </div>
+            </article>
+        </div> <!-- main_container stackContainer -->
+    </div><!--  border container -->
+</body>
+ 
+
+</html>
